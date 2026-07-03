@@ -15,5 +15,39 @@
     "typescript": "^5.5.2",
     "vitest": "~3.2.0",
     "wrangler": "^4.105.0"
+  },
+  "cloudflare": {
+    "bindings": {
+      "KV": {
+        "description": "Create a **new** namespace. Stores auth codes, upload records, and quota counters (separated by key prefix). The name is cosmetic."
+      },
+      "DISCOURSE_ORIGIN": {
+        "description": "Your forum's full URL, e.g. `https://forum.example.com` (no trailing slash)."
+      },
+      "CLOUDFLARE_ACCOUNT_ID": {
+        "description": "Only needed for Cloudflare Stream. Dashboard → Workers & Pages → Account ID. Leave blank if using Mux only."
+      },
+      "DISCOURSE_CONNECT_SECRET": {
+        "description": "**Required.** Any long random string (`openssl rand -hex 32`). Paste the same value into Discourse's `discourse connect provider secrets`."
+      },
+      "COOKIE_SECRET": {
+        "description": "**Required.** Any long random string (`openssl rand -hex 32`). Signs the broker's auth cookies."
+      },
+      "DISCOURSE_WEBHOOK_SECRET": {
+        "description": "Optional. Enables nightly cleanup of deleted videos. Must match the secret on your Discourse Post webhook. Leave blank to disable."
+      },
+      "CLOUDFLARE_STREAM_TOKEN": {
+        "description": "Cloudflare Stream only. API token with **Stream: Edit** (My Profile → API Tokens). Leave blank if not using Cloudflare Stream."
+      },
+      "MUX_TOKEN_ID": {
+        "description": "Mux only. Mux → Settings → API Access Tokens (with **Mux Video** read/write). Leave blank if not using Mux."
+      },
+      "MUX_TOKEN_SECRET": {
+        "description": "Mux only. The secret half of the Mux API token. Leave blank if not using Mux."
+      },
+      "MUX_WEBHOOK_SECRET": {
+        "description": "Mux only. Signing secret of the Mux webhook you create. Leave blank if not using Mux."
+      }
+    }
   }
 }

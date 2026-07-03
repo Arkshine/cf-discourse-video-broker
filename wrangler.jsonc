@@ -11,9 +11,30 @@
 		"enabled": true
 	},
 	"upload_source_maps": true,
+	"keep_vars": true,
 	"compatibility_flags": [
 		"nodejs_compat"
-	]
+	],
+	"vars": {
+		"DISCOURSE_ORIGIN": "",
+		// CLOUDFLARE_ACCOUNT_ID 
+		"MAX_DURATION_SECONDS": "36000",
+		"CLOUDFLARE_MAX_FILE_BYTES": "32212254720",
+		"MUX_MAX_FILE_BYTES": "5368709120",
+		"CLEANUP_GRACE_DAYS": "14",
+		// MAX_UPLOADS_PER_DAY: per-member daily upload cap. 0 = unlimited.
+		"MAX_UPLOADS_PER_DAY": "0",
+		// ALLOWED_GROUPS
+	},
+	"triggers": {
+		"crons": ["0 3 * * *"],
+	},
+	"kv_namespaces": [
+		{
+			"binding": "KV",
+			"id": "PROVISIONED_ON_DEPLOY",
+		},
+	],
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
