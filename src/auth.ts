@@ -6,8 +6,6 @@ import type { BrokerUser, Env } from './types';
 
 const AUTH_CODE_TTL_SECONDS = 5 * 60;
 
-// Kicks off Discourse SSO: redirect the user to the forum's sso_provider with a
-// signed nonce, which comes back to /auth/callback.
 export async function authStart(request: Request, env: Env): Promise<Response> {
 	const nonce = crypto.randomUUID();
 
@@ -37,8 +35,6 @@ export async function authStart(request: Request, env: Env): Promise<Response> {
 	});
 }
 
-// Discourse redirects back here with the signed user payload. Verify it, mint a
-// short-lived auth code, and bounce to the forum with the code in the fragment.
 export async function authCallback(request: Request, env: Env): Promise<Response> {
 	const url = new URL(request.url);
 	const sso = url.searchParams.get('sso');
@@ -83,8 +79,6 @@ export async function authCallback(request: Request, env: Env): Promise<Response
 			.filter(Boolean),
 	};
 
-	// Group gate: when ALLOWED_GROUPS is set, only matching members get a code.
-	// Bounce the rest back with an error the theme can surface.
 	if (!isUserAllowed(user, env)) {
 		return new Response(null, {
 			status: 302,
@@ -127,8 +121,6 @@ export async function authCallback(request: Request, env: Env): Promise<Response
 	});
 }
 
-// The browser exchanges its one-time code for a broker token it can send as a
-// Bearer credential on the upload endpoints.
 export async function authExchange(request: Request, env: Env): Promise<Response> {
 	const origin = request.headers.get('Origin');
 

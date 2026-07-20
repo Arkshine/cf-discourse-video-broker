@@ -19,7 +19,7 @@
   "cloudflare": {
     "bindings": {
       "KV": {
-        "description": "Create a **new** namespace. Stores auth codes, upload records, and quota counters (separated by key prefix). The name is cosmetic."
+        "description": "Stores auth codes, upload records, and quota counters (separated by key prefix). The name is cosmetic."
       },
       "DISCOURSE_ORIGIN": {
         "description": "Your forum's full URL, e.g. `https://forum.example.com` (no trailing slash)."
@@ -28,7 +28,7 @@
         "description": "Only needed for Cloudflare Stream. Dashboard → Workers & Pages → Account ID. Leave blank if using Mux only."
       },
       "DISCOURSE_CONNECT_SECRET": {
-        "description": "**Required.** Any long random string (`openssl rand -hex 32`). Paste the same value into Discourse's `discourse connect provider secrets`."
+        "description": "Paste the same value into Discourse's `discourse connect provider secrets`."
       },
       "COOKIE_SECRET": {
         "description": "**Required.** Any long random string (`openssl rand -hex 32`). Signs the broker's auth cookies."
