@@ -24,11 +24,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Merge upstream
+      - name: Sync from upstream
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote add upstream https://github.com/Arkshine/cf-discourse-video-broker.git
           git fetch upstream
-          git merge -X ours --no-edit upstream/main
+          git checkout upstream/main -- . ':!wrangler.jsonc' ':!.github/workflows'
+          git add -A
+          git commit -m "Update from upstream" || { echo "Already up to date."; exit 0; }
           git push origin HEAD
